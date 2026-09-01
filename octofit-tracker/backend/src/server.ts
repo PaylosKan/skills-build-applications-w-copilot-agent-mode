@@ -7,14 +7,14 @@ import User from './models/User';
 import Workout from './models/Workout';
 
 const app = express();
-const PORT = 8000;
+const PORT = Number(process.env.PORT || 8000);
 
 app.use(express.json());
 
 const codespaceName = process.env.CODESPACE_NAME;
 const baseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
-  : 'http://localhost:8000';
+  : `http://localhost:${PORT}`;
 
 const sendList = (res: Response, resource: string, data: unknown[]) => {
   res.json({

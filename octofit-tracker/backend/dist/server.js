@@ -11,12 +11,12 @@ const Team_1 = __importDefault(require("./models/Team"));
 const User_1 = __importDefault(require("./models/User"));
 const Workout_1 = __importDefault(require("./models/Workout"));
 const app = (0, express_1.default)();
-const PORT = 8000;
+const PORT = Number(process.env.PORT || 8000);
 app.use(express_1.default.json());
 const codespaceName = process.env.CODESPACE_NAME;
 const baseUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev`
-    : 'http://localhost:8000';
+    : `http://localhost:${PORT}`;
 const sendList = (res, resource, data) => {
     res.json({
         message: `${resource} retrieved successfully`,
